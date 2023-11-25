@@ -16,13 +16,11 @@
 import * as echarts from 'echarts'
 import {forEach} from "core-js/stable/dom-collections";
 import {looseEqual} from "element-ui";
-import Device from '../assets/device.png';
-
 
 
 
 export default {
-  name: "IpNodeMap",
+  name: "IpKeyNodeMap",
   data() {
     return {
       personTable: [],
@@ -41,17 +39,30 @@ export default {
     var nodes = [];
     var edges = [];
 
-    this.request.get("/ip/all").then(res=>{
+    this.request.get("/ip/allKeyNode").then(res=>{
 
       res.forEach(item=>{
 
         // 这里可以通过加条件判断item中属性的值（如是否是关键路由器）来控制节点样式
         console.log(item)
+
+        var nodeColor;
+        if(item.keyValue > 0.03 ){
+          nodeColor = "#ff0000"
+        }
+        else if(0.02 < item.keyValue < 0.03){
+          nodeColor = "#add8e6"
+        }
+        else{
+          nodeColor = "#f08080"
+        }
         nodes.push({
           name:item.value,
           draggable: true,
-          // color: "#03f",
-          symbol: 'image://' + Device  // 可以使用不同的符号，如 'circle', 'rect', 'triangle', 'diamond' 等
+          symbol: 'react',  // 可以使用不同的符号，如 'circle', 'rect', 'triangle', 'diamond' 等
+          itemStyle: {
+            color: nodeColor,
+          },
 
         });
 
@@ -66,7 +77,6 @@ export default {
               opacity: 0.7,
               width: 1,
               curveness: 0,
-              edgeLength: 0
               // color: "#014",
             }
 
@@ -77,6 +87,7 @@ export default {
       });
 
       console.log("nodes: " + nodes);
+      console.log("color: " + nodes[0].color);
       console.log("edges: " + edges);
       console.log(edges[0])
 
@@ -84,7 +95,7 @@ export default {
 
       option = {
         title: {
-          text: 'IpNodeMap'
+          text: 'IpKeyNodeMap'
         },
         tooltip: {},
         animationDurationUpdate: 1500,
@@ -115,9 +126,8 @@ export default {
 
             lineStyle: {
               opacity: 0.7,
-              width: 5,
+              width: 1,
               curveness: 0,
-              edgeLength: 500
               // color: ''
             }
 

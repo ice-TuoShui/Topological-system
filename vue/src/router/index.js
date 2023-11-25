@@ -11,18 +11,11 @@ const routes = [
     redirect: "/home",
     children: [
       { path: 'home', name: '首页', component: () => import('../views/Home.vue')},
-      { path: 'user', name: '用户管理', component: () => import('../views/User.vue')},
-      { path: 'file', name: '文件管理', component: () => import('../views/File.vue')},
-      { path: 'person', name: '演员管理', component: () => import('../views/Person.vue')},
-      { path: 'ipNodeMap', name: 'ip节点管理', component: () => import('../views/IpNodeMap.vue')},
-      { path: 'IpNodeDetectProcess', name: 'ip节点探测过程', component: () => import('../views/IpNodeDetectProcess.vue')},
-      { path: 'IpKeyNodeMap', name: 'ip关键节点识别', component: () => import('../views/IpKeyNodeMap.vue')},
+      { path: 'ipNodeDetectProcess', name: '探测任务', component: () => import('../views/IpNodeDetectProcess.vue')},
+      { path: 'pathManage', name: '拓扑路径管理', component: () => import('../views/PathManage.vue')},
+      { path: 'ipNodeMap', name: '关键节点识别', component: () => import('../views/IpNodeMap.vue')},
+      { path: 'topologyResult', name: '抽象拓扑图', component: () => import('../views/TopologyResult.vue')},
     ]
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: () => import('../views/About.vue')
   },
   {
     path: '/Login',

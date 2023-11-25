@@ -57,7 +57,7 @@ export default {
     initCharts () {
       const charts = echarts.init(this.$refs['charts'])
       const option = {
-        backgroundColor: '#0E2152',// 背景颜色
+        backgroundColor: 'rgba(0,0,0,0.5)',// 背景颜色
         geo: {// 地图配置
           map: 'china',
           label: { // 图形上的文本标签
@@ -151,7 +151,7 @@ export default {
 </script>
 <style scoped>
 .content {
-  background-color: #0e2152;
+  /* background-color: #0e2152; */
   height: 100%;
 }
 </style>
